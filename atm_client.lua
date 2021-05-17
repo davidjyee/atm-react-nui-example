@@ -17,8 +17,16 @@ RegisterCommand('atm', function(source, args)
 	
 end, false)
 
-RegisterNUICallback('depositAtm', function(data, cb)
-	local depositAmount = data.amount
+RegisterNUICallback('focus', function(data, cb)
+	local focus = data.focus or false
+
+	SetNuiFocus(focus, focus)
+	
+	cb()
+end)
+
+RegisterNUICallback('deposit', function(data, cb)
+	local depositAmount = data.amount or 0
 	
 	-- Do validation
 	
