@@ -26,13 +26,29 @@ RegisterNUICallback('focus', function(data, cb)
 end)
 
 RegisterNUICallback('deposit', function(data, cb)
-	local depositAmount = data.amount or 0
+	local amount = data.amount or 0
 	
 	-- Do validation
 	
 	-- Debug output
 	TriggerEvent("chat:addMessage", {
-		args = { 'Attempting to deposit', depositAmount }
+		args = { 'Attempting to deposit', amount }
+	})
+	
+	-- Return that it was a success
+	cb({
+		success = true
+	})
+end)
+
+RegisterNUICallback('withdraw', function(data, cb)
+	local amount = data.amount or 0
+	
+	-- Do validation
+	
+	-- Debug output
+	TriggerEvent("chat:addMessage", {
+		args = { 'Attempting to withdraw', amount }
 	})
 	
 	-- Return that it was a success
