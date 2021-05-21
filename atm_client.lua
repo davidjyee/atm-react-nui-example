@@ -22,7 +22,7 @@ RegisterNUICallback('focus', function(data, cb)
 
 	SetNuiFocus(focus, focus)
 	
-	cb()
+	cb({})
 end)
 
 RegisterNUICallback('deposit', function(data, cb)
@@ -34,10 +34,10 @@ RegisterNUICallback('deposit', function(data, cb)
 	TriggerEvent("chat:addMessage", {
 		args = { 'Attempting to deposit', amount }
 	})
-	
+
 	-- Return that it was a success
 	cb({
-		success = true
+		success = 'true'
 	})
 end)
 
@@ -53,6 +53,6 @@ RegisterNUICallback('withdraw', function(data, cb)
 	
 	-- Return that it was a success
 	cb({
-		success = true
+		success = 'true'
 	})
 end)
