@@ -37,15 +37,15 @@ RegisterNUICallback('transaction/commit', function(data, cb)
 	-- Process transaction
 	if(type == 'DEPOSIT') then
 		TriggerEvent("chat:addMessage", {
-			args = { initiator, 'is attempting to deposit ', amount, ' into ', destination }
+			args = { initiator .. ' is attempting to deposit ' .. amount .. ' into ' .. destination }
 		})
 	elseif(type == 'WITHDRAWAL') then
 		TriggerEvent("chat:addMessage", {
-			args = { initiator, 'is attempting to withdraw ', amount, ' from ', origin }
+			args = { initiator .. ' is attempting to withdraw ' .. amount .. ' from ' .. origin }
 		})
 	elseif(type == 'TRANSFER') then
 		TriggerEvent("chat:addMessage", {
-			args = { initiator, 'is attempting to transfer ', amount, ' from ', origin, ' to ', destination }
+			args = { initiator .. ' is attempting to transfer ' .. amount .. ' from ' .. origin .. ' to ' .. destination }
 		})
 	else
 		print('ERROR: INVALID TRANSACTION TYPE')
