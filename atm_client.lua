@@ -1,17 +1,20 @@
 RegisterCommand('atm', function(source, args)
 	local subcommand = args[1] or "show"
+	local type = args[2] or "atm"
 
 	if(subcommand == 'hide')
 	then
 		SendNUIMessage({
 			type = "atm-visibility",
-			visibility = false
+			visibility = false,
+			interfaceType = type
 		})
 	elseif(subcommand == 'show')
 	then
 		SendNUIMessage({
 			type = "atm-visibility",
-			visibility = true
+			visibility = true,
+			interfaceType = type
 		})
 	end
 	
