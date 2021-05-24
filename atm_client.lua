@@ -25,32 +25,35 @@ RegisterNUICallback('focus', function(data, cb)
 	cb({})
 end)
 
-RegisterNUICallback('deposit', function(data, cb)
-	local amount = data.amount or 0
+RegisterNUICallback('transaction/commit', function(data, cb)
+	local type = data.type
+	local amount = data.amount
+	local destination = data.destination
+	local origin = data.origin
+	local initiator = data.initiator
 	
 	-- Do validation
-	
-	-- Debug output
-	TriggerEvent("chat:addMessage", {
-		args = { 'Attempting to deposit', amount }
-	})
 
-	-- Return that it was a success
-	cb({
-		success = 'true'
-	})
-end)
+	-- Process transaction
+	if(type == 'DEPOSIT') then
+		TriggerEvent("chat:addMessage", {
+			args = { initiator, 'is attempting to deposit ', amount, ' into ', destination }
+		})
+	elseif(type == 'WITHDRAWAL') then
+		TriggerEvent("chat:addMessage", {
+			args = { initiator, 'is attempting to withdraw ', amount, ' from ', origin }
+		})
+	elseif(type == 'TRANSFER') then
+		TriggerEvent("chat:addMessage", {
+			args = { initiator, 'is attempting to transfer ', amount, ' from ', origin, ' to ', destination }
+		})
+	else
+		print('ERROR: INVALID TRANSACTION TYPE')
+		cb({
+			success = 'false'
+		})
+	end
 
-RegisterNUICallback('withdraw', function(data, cb)
-	local amount = data.amount or 0
-	
-	-- Do validation
-	
-	-- Debug output
-	TriggerEvent("chat:addMessage", {
-		args = { 'Attempting to withdraw', amount }
-	})
-	
 	-- Return that it was a success
 	cb({
 		success = 'true'
