@@ -16,4 +16,5 @@ files {
 	'index.html',
 	'index.js',
 	'index.js.LICENSE.txt',
+	'*.png',
 }
