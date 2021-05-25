@@ -15,5 +15,5 @@ client_script 'atm_client.lua'
 files {
 	'index.html',
 	'index.js',
-	'index.js.LICENSE.txt'
+	'index.js.LICENSE.txt',
 }
