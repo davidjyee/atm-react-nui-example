@@ -29,46 +29,64 @@ RegisterNUICallback('focus', function(data, cb)
 end)
 
 RegisterNUICallback('access/add', function(data, cb)
-	local accessId = data.id or -1
+	local accessId = data.id
 
-	if(accessId >= -1) then
+	if(accessId >= 0) then
 		TriggerEvent("chat:addMessage", {
 			args = { 'Attempting to add access with id ' .. accessId .. ' with user ' .. data.userId .. ' for account ' .. data.accountId .. ' of access level ' .. data.accessLevel }
 		})
-	end
 
-	cb({
-		success = 'false'
-	})
+		cb({
+			success = true
+		})
+	else
+		print('ERROR: INVALID ACCESS ID')
+
+		cb({
+			success = false
+		})
+	end
 end)
 
 RegisterNUICallback('access/edit', function(data, cb)
-	local accessId = data.id or -1
+	local accessId = data.id
 	local accessLevel = data.level or 0
 
-	if(accessId >= -1) then
+	if(accessId >= 0) then
 		TriggerEvent("chat:addMessage", {
 			args = { 'Attempting to edit access with id ' .. accessId .. ' to level ' .. accessLevel }
 		})
-	end
 
-	cb({
-		success = 'false'
-	})
+		cb({
+			success = true
+		})
+	else
+		print('ERROR: INVALID ACCESS ID')
+
+		cb({
+			success = false
+		})
+	end
 end)
 
 RegisterNUICallback('access/remove', function(data, cb)
-	local accessId = data.id or -1
+	local accessId = data.id
 
 	if(accessId >= 0) then
 		TriggerEvent("chat:addMessage", {
 			args = { 'Attempting to remove access with id ' .. accessId }
 		})
-	end
 
-	cb({
-		success = 'false'
-	})
+		cb({
+			success = true
+		})
+	else
+		print('ERROR: INVALID ACCESS ID')
+
+		cb({
+			success = false
+		})
+	end
 end)
 
 RegisterNUICallback('transaction/commit', function(data, cb)
@@ -96,13 +114,14 @@ RegisterNUICallback('transaction/commit', function(data, cb)
 	else
 		print('ERROR: INVALID TRANSACTION TYPE')
 		cb({
-			success = 'false'
+			success = false
 		})
+		return
 	end
 
 	-- Return that it was a success
 	cb({
-		success = 'true'
+		success = true
 	})
 end)
 
